@@ -16,7 +16,7 @@ This project aims to produce tensorrt engine for yolov5, and calibrate the model
 cd tensorrt_yolov5
 git clone -b v4.0 https://github.com/ultralytics/yolov5.git
 cd ./yolov5
-cp ../gen_wts.py ./yolov5
+cp ../gen_wts.py .
 wget https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
 // or you can download it from url
 python gen_wts.py
