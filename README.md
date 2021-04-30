@@ -1,11 +1,11 @@
-# tensorrt_yolov5_v4.0
+# tensorrt_yolov5_v4.0 :100:
 
 This project aims to produce tensorrt engine for yolov5, and calibrate the model for INT8.
 
 ## Env
 * Ubuntu 18.04
 * Tesla T4
-* CUDA 11.0
+* CUDA 10.2
 * Driver 450.80.02
 * tensorrt 7.0.0.11
 
@@ -64,6 +64,7 @@ It will generate test result in `./experiment/images` folder.
 - [ ] Support for mAP test
 - [ ] Comparison for tensorrt acceleration effect
 - [ ] Run in deepstream project
+- [ ] QAT will increase in the future
 
 
 ## Reference
@@ -74,6 +75,6 @@ It will generate test result in `./experiment/images` folder.
 
 ## Contributor
 * @ [宗孝鹏](https://github.com/XiaoPengZong).
-* @ [张波]()
+* @ [张波](https://github.com/nanmi)
 * @ [于忠杰]()
 * @ [杨叶]()
