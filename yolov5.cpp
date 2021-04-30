@@ -5,14 +5,18 @@
 #include "common.hpp"
 #include "utils.h"
 #include "calibrator.h"
+#include <sys/stat.h> 　
+#include <sys/types.h>
+#include <dirent.h>
+#include <unistd.h>
 
-#define USE_FP16 // set USE_INT8 or USE_FP16 or USE_FP32
+#define USE_FP32 // set USE_INT8 or USE_FP16 or USE_FP32
 #define DEVICE 0  // GPU id
 #define NMS_THRESH 0.45
 #define CONF_THRESH 0.5
 #define BATCH_SIZE 1
-bool save_txt = false;  // save detection result into txt files
-bool save_img = true;  // whether save the image results
+bool save_txt = true;  // save detection result into txt files
+bool save_img = false;  // whether save the image results
 
 
 // stuff we know about the network and the input/output blobs
@@ -324,10 +328,15 @@ int main(int argc, char** argv) {
                 // save txt for mAP testing 
                 if(save_txt)
                 {
+                    // 创建文件夹
+                    char *  savepath = "../experiment/result_txt/";
+                    if(access(savepath, 0) == -1)
+                        mkdir(savepath, S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+                    
                     // open file
                     std::string::size_type idx = file_names[f - fcount + 1 + b].find('.');
                     std::string txt_file = file_names[f - fcount + 1 + b].substr(0, idx) + ".txt";
-                    std::ofstream destFile("../experiment/result_txt/" + txt_file, std::ios::out);
+                    std::ofstream destFile(savepath + txt_file, std::ios::out);
                     if(!destFile) {
                         std::cout << "Open file error!" << std::endl;
                         return 0;
