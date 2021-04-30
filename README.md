@@ -63,11 +63,12 @@ You can set test image folder for below command.
 ```
 It will generate test result in `./experiment/images` folder.
 
-## Benchmark
+## Result
+### 1. speed result
 
-|          | BatchSize | Latency,ms | Throughput (1000/latency*batchsize) | Latency Speedup (TRT latency/original latency) | Througnput Speedup (TRT throughput/original throughput) |
+|          | BatchSize | Latency,ms | Throughput (1000/latency*batchsize) | Latency Speedup (TRT latency/original latency) | Throughput Speedup (TRT throughput/original throughput) |
 |----------|:---------:|:----------:|:-----------------------------------:|------------------------------------------------|:-------------------------------------------------------:|
-|  Pytorch |     1     |     20     |                  50                 |                                                |                                                         |
+|  PyTorch |     1     |     20     |                  50                 |                                                |                                                         |
 |          |     8     |     17     |                 470                 |                                                |                                                         |
 |          |     16    |     18     |                 888                 |                                                |                                                         |
 |          |     32    |     19     |                 1684                |                                                |                                                         |
@@ -75,6 +76,17 @@ It will generate test result in `./experiment/images` folder.
 |          |     8     |     4.1    |                 1951                |                      0.241                     |                          4.14x                          |
 |          |     16    |     3.8    |                 4210                |                      0.211                     |                          4.73x                          |
 |          |     32    |     2.2    |                14545                |                      0.115                     |                          8.63x                          |
+
+### 2. mAP result
+We test the mAP of modle in COCO_VAL_2014 dataset with 40k+ images. The result is shownd as below.  
+You can calculate your model result with method of https://github.com/Cartucho/mAP#create-the-predicted-objects-files, the only thing you should do is save infer result by set `save_txt` to `true` in `yolov5.cpp` file.
+
+|          | FP32  | FP16 |
+| :--------: | :-----: | :----: |
+| PyTorch  | 36.8  |   -   |
+| TensorRT | 39.34 | 39.34 |
+
+
 ## TODO
 - [ ] Support for yolov5-v4.0 m/l/x
 - [ ] Support for mAP test
